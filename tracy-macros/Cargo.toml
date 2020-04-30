@@ -1,0 +1,14 @@
+[package]
+name = "tracy-macros"
+version = "0.1.0"
+authors = ["Kenichi Ishibashi <ishibashi.kenichi@gmail.com>"]
+edition = "2018"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+tracy-sys = { path = "../tracy-sys" }
+
+syn = { version = "1.0.18", features = ["full", "extra-traits"] }
+quote = "1.0.3"

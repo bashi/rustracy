@@ -1,0 +1,3 @@
+/lib/*.so
+/target
+Cargo.lock

@@ -1,0 +1,9 @@
+[package]
+name = "rustracy"
+version = "0.1.0"
+authors = ["Kenichi Ishibashi <ishibashi.kenichi@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+tracy-sys = { path = "../tracy-sys" }
+tracy-macros = { path = "../tracy-macros" }

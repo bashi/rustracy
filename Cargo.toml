@@ -1,0 +1,7 @@
+[workspace]
+members = [
+  "tracy-macros",
+  "tracy-sys",
+  "run-with-sdl",
+  "rustracy",
+]
