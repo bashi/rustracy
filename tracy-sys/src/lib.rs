@@ -16,7 +16,7 @@ pub struct ZoneContext {
     active: c_int,
 }
 
-#[link(name = "tracy-release")]
+#[link(name = "tracy")]
 extern "C" {
     fn ___tracy_emit_zone_begin(srcloc: *const SourceLocation, active: c_int) -> ZoneContext;
     fn ___tracy_emit_zone_end(ctx: ZoneContext);
