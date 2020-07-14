@@ -1,5 +1,4 @@
-use std::os::raw::c_char;
-use std::os::raw::c_int;
+use std::os::raw::{c_char, c_double, c_int};
 
 #[repr(C)]
 pub struct SourceLocation {
@@ -24,6 +23,8 @@ extern "C" {
     fn ___tracy_emit_frame_mark(name: *const c_char);
     fn ___tracy_emit_frame_mark_start(name: *const c_char);
     fn ___tracy_emit_frame_mark_end(name: *const c_char);
+
+    fn ___tracy_emit_plot(name: *const c_char, value: c_double);
 }
 
 pub fn emit_zone_begin(loc: &SourceLocation) -> ZoneContext {
@@ -49,4 +50,8 @@ pub fn emit_frame_mark_start(name: &str) {
 
 pub fn emit_frame_mark_end(name: &str) {
     unsafe { ___tracy_emit_frame_mark_end(name.as_ptr() as *const _) }
+}
+
+pub fn emit_plot(name: &str, value: f64) {
+    unsafe { ___tracy_emit_plot(name.as_ptr() as *const _, value) }
 }

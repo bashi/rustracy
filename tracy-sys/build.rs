@@ -9,9 +9,11 @@ fn main() {
             .use_plt(false)
             .flag_if_supported("-flto")
             .flag_if_supported("/LTCG")
+            .flag_if_supported("/O2")
             .cpp(true)
             .include("./tracy")
             .define("TRACY_ENABLE", None)
+            .define("NDEBUG", None)
             .file("./tracy/TracyClient.cpp")
             .compile("libtracy.a");
     }
