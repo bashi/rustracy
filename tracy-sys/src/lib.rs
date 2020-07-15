@@ -25,6 +25,8 @@ extern "C" {
     fn ___tracy_emit_frame_mark_end(name: *const c_char);
 
     fn ___tracy_emit_plot(name: *const c_char, value: c_double);
+
+    fn ___tracy_emit_messageL(name: *const c_char, callstack: c_int);
 }
 
 pub fn emit_zone_begin(loc: &SourceLocation) -> ZoneContext {
@@ -40,18 +42,22 @@ pub fn emit_frame_mark_with_null() {
     unsafe { ___tracy_emit_frame_mark(std::ptr::null()) }
 }
 
-pub fn emit_frame_mark(name: &str) {
+pub fn emit_frame_mark(name: &'static str) {
     unsafe { ___tracy_emit_frame_mark(name.as_ptr() as *const _) }
 }
 
-pub fn emit_frame_mark_start(name: &str) {
+pub fn emit_frame_mark_start(name: &'static str) {
     unsafe { ___tracy_emit_frame_mark_start(name.as_ptr() as *const _) }
 }
 
-pub fn emit_frame_mark_end(name: &str) {
+pub fn emit_frame_mark_end(name: &'static str) {
     unsafe { ___tracy_emit_frame_mark_end(name.as_ptr() as *const _) }
 }
 
-pub fn emit_plot(name: &str, value: f64) {
+pub fn emit_plot(name: &'static str, value: f64) {
     unsafe { ___tracy_emit_plot(name.as_ptr() as *const _, value) }
+}
+
+pub fn emit_message_string_literal(name: &'static str) {
+    unsafe { ___tracy_emit_messageL(name.as_ptr() as *const _, 1) }
 }
