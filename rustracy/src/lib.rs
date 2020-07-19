@@ -7,3 +7,10 @@ macro_rules! message_string_literal {
         rustracy::emit_message_string_literal(concat!($name, "\0"))
     };
 }
+
+#[macro_export]
+macro_rules! plot {
+    ($name:tt, $value:expr) => {
+        rustracy::emit_plot(concat!($name, "\0"), $value)
+    };
+}
