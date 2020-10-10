@@ -21,8 +21,6 @@ fn main() {
     configure_build(b)
         .file("./tracy/TracyClient.cpp")
         .opt_level(3)
-        .flag_if_supported("-Wno-class-memaccess")
-        .flag_if_supported("-Wno-enum-compare")
         .flag_if_supported("-Wno-unused-parameter")
         .flag_if_supported("-Wno-unused-function")
         .cpp(true)
