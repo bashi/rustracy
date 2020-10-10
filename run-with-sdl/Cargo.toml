@@ -5,6 +5,6 @@ authors = ["Kenichi Ishibashi <ishibashi.kenichi@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-rustracy = { path = "../rustracy" }
+rustracy = { path = "../rustracy", features = ["allow-vm"] }
 
 sdl2 = { version = "0.32", features = ["ttf"] }

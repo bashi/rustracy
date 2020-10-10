@@ -7,3 +7,6 @@ edition = "2018"
 [dependencies]
 tracy-sys = { path = "../tracy-sys" }
 tracy-macros = { path = "../tracy-macros" }
+
+[features]
+allow-vm = [ "tracy-sys/allow-vm" ]

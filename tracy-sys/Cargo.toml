@@ -7,4 +7,6 @@ edition = "2018"
 [build-dependencies]
 cc = "1.0"
 
-[dependencies]
+[features]
+# Set TRACY_TIMER_QPC to allow non-precise timestamps.
+allow-vm = []
