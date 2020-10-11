@@ -11,7 +11,7 @@ fn zone_scoped_common(item: TokenStream, prefix: Option<String>) -> TokenStream 
     let prefix = prefix.unwrap_or("".to_string());
 
     let prologue = quote! {
-        let _ctx = {
+        let _zone_scoped = {
             const name: &'static str = concat!(#prefix, stringify!(#ident), "\0");
             const file: &'static str = concat!(file!(), "\0");
             const srcloc: rustracy::SourceLocation = rustracy::SourceLocation {
@@ -21,39 +21,13 @@ fn zone_scoped_common(item: TokenStream, prefix: Option<String>) -> TokenStream 
                 line: line!(),
                 color: 0,
             };
-            rustracy::emit_zone_begin(&srcloc)
+            rustracy::ZoneScoped::new(&srcloc)
         };
     };
     let prologue: TokenStream = prologue.into();
     let prologue = parse_macro_input!(prologue as Stmt);
 
-    let mut body = quote! {};
-    for s in &ast.block.stmts {
-        body = quote! {
-            #body
-            #s
-        };
-    }
-    let body = quote! {
-        let mut body = || { #body };
-    };
-    let body: TokenStream = body.into();
-    let body = parse_macro_input!(body as Stmt);
-
-    let epilogue = quote! {
-        {
-            let result = body();
-            rustracy::emit_zone_end(_ctx);
-            result
-        }
-    };
-    let epilogue: TokenStream = epilogue.into();
-    let epilogue = parse_macro_input!(epilogue as Stmt);
-
-    ast.block.stmts.clear();
-    ast.block.stmts.push(prologue);
-    ast.block.stmts.push(body);
-    ast.block.stmts.push(epilogue);
+    ast.block.stmts.insert(0, prologue);
 
     let gen = quote! {
         #ast

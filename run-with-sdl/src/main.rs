@@ -30,10 +30,7 @@ impl Engine {
         }
     }
 
-    // This isn't supported yet as using closure doesn't allow us to return a
-    // reference.
-    // TODO: Support it.
-    // #[rustracy::zone_scoped]
+    #[rustracy::zone_scoped]
     fn execute_frame(&mut self) -> Option<&[u8]> {
         // Fill frame buffer...
         Some(self.frame_buffer.as_ref())
@@ -45,7 +42,7 @@ enum ExecuteResult {
     Exit,
 }
 
-// #[rustracy::zone_scoped]
+#[rustracy::zone_scoped]
 fn execute_frame(
     engine: &mut Engine,
     event_pump: &mut sdl2::EventPump,

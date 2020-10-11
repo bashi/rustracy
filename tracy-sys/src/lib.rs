@@ -10,12 +10,29 @@ pub struct SourceLocation {
 }
 
 #[repr(C)]
+#[derive(Clone, Copy)]
 pub struct ZoneContext {
     id: u32,
     active: c_int,
 }
 
-#[link(name = "tracy")]
+pub struct ZoneScoped {
+    ctx: ZoneContext,
+}
+
+impl ZoneScoped {
+    pub fn new(loc: &SourceLocation) -> Self {
+        let ctx = emit_zone_begin(loc);
+        ZoneScoped { ctx }
+    }
+}
+
+impl Drop for ZoneScoped {
+    fn drop(&mut self) {
+        emit_zone_end(self.ctx);
+    }
+}
+
 extern "C" {
     fn ___tracy_emit_zone_begin(srcloc: *const SourceLocation, active: c_int) -> ZoneContext;
     fn ___tracy_emit_zone_end(ctx: ZoneContext);
