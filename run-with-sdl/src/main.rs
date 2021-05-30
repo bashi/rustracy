@@ -28,6 +28,7 @@ impl Engine {
         for i in 0..repeat {
             self.count = self.count.wrapping_add(i);
         }
+        rustracy::plot!("count", self.count);
     }
 
     #[rustracy::zone_scoped]
@@ -114,6 +115,7 @@ fn main() -> Result<(), String> {
         }
         let n = Instant::now();
         if n < next_frame_time {
+            let _zone = rustracy::create_zone_scoped!("sleep");
             thread::sleep(next_frame_time - n);
         }
         next_frame_time += duration_per_frame;

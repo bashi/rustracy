@@ -35,11 +35,26 @@ fn zone_scoped_common(item: TokenStream, prefix: Option<String>) -> TokenStream 
     gen.into()
 }
 
+/// Logs a `zone`.
+///
+/// ```
+/// #[zone_scoped]
+//  fn render_frame() { /* ... */ }
+/// ```
 #[proc_macro_attribute]
 pub fn zone_scoped(_attr: TokenStream, item: TokenStream) -> TokenStream {
     zone_scoped_common(item, None)
 }
 
+/// Logs a `zone` with a prefix.
+///
+/// ```
+/// struct Engine { /* ...*/ };
+/// impl Engine {
+///     #[zone_scoped(Engine)]
+///     fn render_frame() { /* ... */ }
+/// }
+/// ```
 #[proc_macro_attribute]
 pub fn zone_scoped_prefix(attr: TokenStream, item: TokenStream) -> TokenStream {
     let prefix = attr.into_iter().find_map(|token| match token {
