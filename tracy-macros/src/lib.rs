@@ -37,7 +37,7 @@ fn zone_scoped_common(item: TokenStream, prefix: Option<String>) -> TokenStream 
 
 /// Logs a `zone`.
 ///
-/// ```
+/// ```ignore
 /// #[zone_scoped]
 //  fn render_frame() { /* ... */ }
 /// ```
@@ -48,10 +48,10 @@ pub fn zone_scoped(_attr: TokenStream, item: TokenStream) -> TokenStream {
 
 /// Logs a `zone` with a prefix.
 ///
-/// ```
+/// ```ignore
 /// struct Engine { /* ...*/ };
 /// impl Engine {
-///     #[zone_scoped(Engine)]
+///     #[zone_scoped_prefix(Engine)]
 ///     fn render_frame() { /* ... */ }
 /// }
 /// ```

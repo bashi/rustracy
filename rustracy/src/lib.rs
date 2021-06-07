@@ -3,7 +3,7 @@ pub use tracy_sys::*;
 
 /// Emits a string message.
 ///
-/// ```
+/// ```ignore
 /// fn handle_event() {
 ///     message_string_literal!("Got an event");
 ///     // ...
@@ -18,7 +18,7 @@ macro_rules! message_string_literal {
 
 /// Captures numeric value changes over time.
 ///
-/// ```
+/// ```ignore
 /// let num_samples = generate_samples();
 /// plot!("num_samples", num_samples);
 /// // ...
@@ -34,7 +34,7 @@ macro_rules! plot {
 ///
 /// A zone represents the lifetime of a special on-stack profiler variable.
 ///
-/// ```
+/// ```ignore
 /// fn some_task() {
 ///     let _zone = create_zone_scoped!("some_task");
 ///     // ...

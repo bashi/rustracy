@@ -20,10 +20,11 @@ fn main() {
     let b = cc::Build::new();
     configure_build(b)
         .file("./tracy/TracyClient.cpp")
+        .cpp(true)
         .opt_level(3)
+        .flag_if_supported("-std=c++17")
         .flag_if_supported("-Wno-unused-parameter")
         .flag_if_supported("-Wno-unused-function")
-        .cpp(true)
         .define("TRACY_ENABLE", None)
         .define("NDEBUG", None)
         .compile("libtracy.a");
