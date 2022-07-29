@@ -1,6 +1,6 @@
 [package]
 name = "tracy-sys"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Kenichi Ishibashi <ishibashi.kenichi@gmail.com>"]
 edition = "2018"
 
