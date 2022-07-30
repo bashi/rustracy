@@ -21,6 +21,6 @@ jobs:
         with:
           submodules: recursive
       - name: Build
-        run: cargo build --verbose
+        run: cargo build --verbose --features=allow-vm
       - name: Run tests
-        run: cargo test --verbose
+        run: cargo test --verbose --features=allow-vm
