@@ -1,7 +1,10 @@
 [workspace]
+resolver = "2"
 members = [
   "tracy-macros",
   "tracy-sys",
-  "run-with-sdl",
   "rustracy",
+]
+exclude = [
+  "examples/run-with-sdl",
 ]

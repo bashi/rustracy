@@ -2,9 +2,9 @@
 name = "run-with-sdl"
 version = "0.1.0"
 authors = ["Kenichi Ishibashi <ishibashi.kenichi@gmail.com>"]
-edition = "2018"
+edition = "2021"
 
 [dependencies]
-rustracy = { path = "../rustracy", features = ["allow-vm"] }
+rustracy = { path = "../../rustracy", features = ["allow-vm"] }
 
 sdl2 = { version = "0.32", features = ["ttf"] }
